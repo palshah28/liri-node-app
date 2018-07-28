@@ -93,7 +93,22 @@ console.log("It's on Netflix!");
 getMovieDetails(queryURL);
 }
 
+else if (process.argv[2] == "do-what-it-says" &&  process.argv.length <= 3) { 
 
+    fs.readFile("random.txt","utf8", function(error, data) {
+
+        if(error) {
+        
+        }
+        if(data) {
+            var songName = data;
+            console.log("No Details Entered-----"+"Here is a song of my choice--"+"Enjoy the Track : " + songName );
+            getSongDetails(songName);
+        }
+        
+        });
+   // console.log('No songs occurred: Spotify Call');
+}
 // If no arguments
 
 
@@ -118,6 +133,7 @@ function getMovieDetails(queryURL) {
        
         // console.log(JSON.parse(body).Awards);
         console.log("*************** YOUR REQUESTED MOVIE DETAILS FROM OMDB ****************");
+      //  console.log(body);
         console.log("The movie's title is: " + JSON.parse(body).Title);
         console.log("The movie's release date is: " + JSON.parse(body).Released);
         console.log("The movie's IMDB rating: " + JSON.parse(body).imdbRating);
